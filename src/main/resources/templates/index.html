@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload and Encryption</title>
+</head>
+<body>
+    <h1>Upload and Encrypt a File</h1>
+    <form method="POST" enctype="multipart/form-data" action="/upload">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <div>
+        <h2>Messages:</h2>
+        <p th:if="${message}" th:text="${message}"></p>
+    </div>
+
+    <div th:if="${fileId}">
+        <h2>Download Encrypted File:</h2>
+        <a th:href="'/download?fileId=' + ${fileId}" download="encryptedFile">Download Encrypted File</a>
+    </div>
+
+    <div th:if="${fileId}">
+        <h2>Decrypt and Download File:</h2>
+        <form method="POST" action="/decrypt">
+            <input type="hidden" name="fileId" th:value="${fileId}" />
+            <button type="submit">Decrypt File</button>
+        </form>
+        <div th:if="${fileId}">
+            <a th:href="'/downloadDecrypted?fileId=' + ${fileId}" download="decryptedFile">Download Decrypted File</a>
+        </div>
+    </div>
+</body>
+</html>

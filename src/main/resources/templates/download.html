@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Encrypted File</title>
+</head>
+<body>
+    <h1>Download Encrypted File</h1>
+    <div th:if="${message}" th:text="${message}"></div>
+
+    <div th:if="${encryptedFile}">
+        <h2>Encrypted File Content:</h2>
+        <p th:text="${encryptedFile}"></p>
+        <a th:href="'/download?fileId=' + ${fileId}" download="encryptedFile.txt">Download Encrypted File</a>
+    </div>
+
+    <a href="/">Go Back</a>
+</body>
+</html>
